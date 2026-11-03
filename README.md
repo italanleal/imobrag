@@ -68,6 +68,8 @@ As antigas informações em localStorage não foram apagadas nem migradas automa
 
 ## Documentação
 
+- `docs/ESCOPO-MVP.md`: objetivos, entregas, limites e critérios de aceite do projeto.
+- `docs/PERGUNTAS-MVP.md`: 20 cenários iniciais de consulta e avaliação para revisão.
 - `backend/README.md`: arquitetura, rotas e integração futura com LangChain.
 - `frontend/README.md`: interface, proxy e configuração.
 - `docs/MAPEAMENTO-LAIS.md`: referência de produto e adaptações.
