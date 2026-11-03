@@ -1,0 +1,7 @@
+{
+  "name": "imobrag-prototipo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Protótipo navegável do ImobRAG, inspirado em padrões observados na LAIS",
+  "scripts": {"start": "node server.mjs", "check": "node --check app.js"}
+}
