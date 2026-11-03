@@ -76,4 +76,4 @@ As antigas informações em localStorage não foram apagadas nem migradas automa
 - `docs/VALIDACAO.md`: histórico de verificações.
 - `docs/BRIEFING-CODEX.md`: direcionamento para evoluir o RAG.
 
-O histórico Git é local. Não foi realizado push ou alteração do board.
+O projeto está publicado no GitHub. A entrega de setup local foi registrada na issue #9.
