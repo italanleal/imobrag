@@ -35,4 +35,10 @@ Os estilos usam Google Fonts com fontes locais alternativas. A aplicação funci
 - `docs/BRIEFING-CODEX.md`: especificação para evoluir o protótipo.
 - `docs/VALIDACAO.md`: verificações realizadas e pendências.
 
-Não foi feito commit, push ou alteração de issues no GitHub.
+O histórico Git local inclui a versão inicial e as correções responsivas. Não foi feito push ou alteração de issues no GitHub.
+
+## Interface responsiva
+
+A barra lateral tem rolagem independente no computador. Até 800 px, a navegação é aberta pelo botão Menu e fecha ao selecionar uma área ou pressionar Escape. Em telas de até 600 px, títulos e ações são empilhados, indicadores ficam em linhas e os documentos são apresentados em cartões. Os formulários usam fonte de 16 px no celular, controles de pelo menos 44 px nas ações principais e quebra de textos longos.
+
+Validação em navegador: cinco telas em seis larguras (320, 390, 768, 1024, 1366 e 1920 px), sem transbordamento horizontal. Essas medidas simulam a largura do dispositivo; não substituem testes em aparelhos físicos.

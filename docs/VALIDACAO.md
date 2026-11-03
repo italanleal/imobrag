@@ -13,6 +13,17 @@
 
 ## Limites desta validação
 
-As oito verificações são casos fixos do protótipo textual, não avaliação de um modelo de IA. Importação TXT e layout mobile não foram testados no navegador nesta rodada. O código possui regras responsivas; revisão em dispositivo real e validação de acessibilidade completa seguem pendentes.
+As oito verificações são casos fixos do protótipo textual, não avaliação de um modelo de IA. A importação TXT não foi testada nesta rodada. Revisão em dispositivo físico e validação de acessibilidade completa seguem pendentes. A revisão responsiva em navegador está registrada abaixo.
 
 Nenhum documento real foi importado. Não houve teste de integração, pois não há backend de RAG nesta entrega.
+
+## Revisão responsiva — 03/11/2026
+
+- Conferidas as cinco rotas em larguras de 320, 390, 768, 1024, 1366 e 1920 px: 30 combinações. A leitura foi feita após confirmar o título de cada tela.
+- A largura rolável foi igual à largura útil da página em todas as combinações. Nenhum elemento visível de conteúdo, cabeçalho ou navegação ultrapassou horizontalmente a viewport.
+- Revisão visual do início em desktop, da base documental em celular e do modal de fonte em celular.
+- Menu móvel abriu; a escolha de Consultas fechou o menu e atualizou o estado aria-expanded para false. Escape também fechou o menu e devolveu o foco ao botão.
+- Consulta sugerida e abertura da fonte funcionaram no layout de celular.
+- Reexecução dos oito casos funcionais: 8 de 8 passaram.
+- Melhorias: grades com minmax(0, 1fr), barra lateral rolável, margens compartilhadas, botões e formulários maiores, tabelas convertidas em cartões no celular, quebra de texto e modal limitado à altura disponível.
+- Não houve teste em dispositivo físico nem simulação de teclado virtual. Os textos importados e testes completos de leitores de tela continuam pendentes.
