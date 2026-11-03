@@ -1,44 +1,77 @@
-# ImobRAG — protótipo de interface
+# ImobRAG
 
-Protótipo local construído a partir de padrões observados na Casa da LAIS e do escopo do ImobRAG. Pesquisa realizada em 03/11/2026.
+Aplicação local de consulta documental para imobiliárias. Backend em **Fastify + TypeScript** e SQLite. A interface responsiva foi preservada e conectada à API; React + Vite fica para uma etapa futura.
 
 ## Executar
 
-Com Node.js instalado, abra um terminal nesta pasta e execute:
+Requisito: Node.js 24.15 ou superior.
 
 ```powershell
+npm ci
+npm run dev
+```
+
+- Interface: http://127.0.0.1:4173
+- API: http://127.0.0.1:3001/api/health
+- Documentação interativa: http://127.0.0.1:3001/docs
+- OpenAPI: http://127.0.0.1:3001/docs/json
+
+O banco é criado automaticamente em `backend/data/imobrag.sqlite`. Não precisa de conta ou chave de IA para começar. As configurações opcionais estão em `.env.example` de cada pasta.
+
+## Estrutura
+
+```text
+imobrag/
+├── backend/
+│   ├── src/
+│   │   ├── config/          Ambiente
+│   │   ├── modules/         Documents, settings, chat e evaluation
+│   │   ├── infrastructure/  Banco, HTTP e adaptadores de IA
+│   │   └── shared/          Utilitários e erros comuns
+│   └── test/integration/
+├── frontend/                Interface e cliente da API
+├── docs/                    Mapeamento e histórico de validação
+├── package.json             Comandos das duas partes
+└── package-lock.json        Dependências fixadas
+```
+
+A API segue **Controller → Service → Repository**, organizada por funcionalidade. Controllers recebem HTTP; services executam regras; repositories acessam o banco. A apresentação fica no frontend. Veja o detalhamento em `backend/README.md`.
+
+## Funcionalidades
+
+- Cadastro de textos, pesquisa, filtros e acesso às fontes.
+- Configurações persistidas no SQLite.
+- Consultas pelo backend com fonte ou indicação de ausência de evidência.
+- Avaliação com oito casos demonstrativos.
+- Documentação OpenAPI e página para testar requisições.
+- Interface com carregamento, mensagens de falha e confirmação de salvamento pela API.
+- Contrato substituível do motor de respostas para a futura integração com LangChain JS.
+
+## Verificar e executar o build
+
+```powershell
+npm run check
+npm test
+npm run build
 npm start
 ```
 
-Abra http://127.0.0.1:4173. Não há dependências para instalar. Para conferir a sintaxe: `npm run check`.
+Só backend: `npm run dev -w backend`. Só interface: `npm run dev -w frontend`. `npm start` requer o build prévio do backend.
 
-## O que funciona
+## Limites atuais
 
-- Cinco áreas navegáveis: visão geral, consultas, base documental, assistente e avaliação.
-- Consulta por palavras-chave sobre quatro textos fictícios, com referência e abertura do conteúdo.
-- Resposta de ausência de evidência para perguntas sem correspondência e alguns limites explícitos.
-- Busca documental por título e conteúdo, filtro de assunto e importação local de TXT de até 200 KB.
-- Nome da assistente e exibição de fontes aplicados à interface; configurações e textos importados persistidos no navegador.
-- Oito casos funcionais executáveis na tela Avaliação.
+O motor demonstrativo compara palavras e devolve o texto inteiro. Não usa LangChain, LLM, embeddings ou busca semântica. Os quatro textos iniciais são fictícios e suas páginas são simuladas. As regras podem falhar e não constituem um RAG pronto para atendimento real.
 
-## Limites
+A importação aceita TXT até 200 KB. PDFs, extração, indexação, histórico persistente e autenticação ficam para as próximas etapas. Não há CRM ou WhatsApp. Os servidores estão limitados a loopback para uso local. Tom e instruções editoriais são armazenados, mas não são interpretados pelo motor demonstrativo.
 
-Não há backend de RAG, embeddings, LLM, extração de PDF, autenticação, CRM, WhatsApp ou armazenamento compartilhado. As páginas de referência são simuladas. A busca por palavras-chave pode recuperar um texto inadequado; o bloqueio de alguns termos é apenas uma regra de demonstração e não uma solução de segurança ou avaliação semântica. Tom e instruções editoriais são apenas salvos, sem interpretação por IA. As conversas duram uma sessão e somem ao recarregar.
-
-Os textos de exemplo não são documentos reais, políticas contratuais nem orientação jurídica. A importação TXT adiciona palavras de busca e disponibiliza o texto inteiro; não extrai nem resume conteúdo. Não use documentos pessoais ou de clientes para apresentar este protótipo.
-
-Os estilos usam Google Fonts com fontes locais alternativas. A aplicação funciona sem as fontes remotas. O servidor aceita apenas conexões locais e uma lista fixa de arquivos.
+As antigas informações em localStorage não foram apagadas nem migradas automaticamente. Textos importados na versão anterior precisam ser cadastrados na API novamente.
 
 ## Documentação
 
-- `docs/MAPEAMENTO-LAIS.md`: observações, limitações e decisões de adaptação.
-- `docs/BRIEFING-CODEX.md`: especificação para evoluir o protótipo.
-- `docs/VALIDACAO.md`: verificações realizadas e pendências.
+- `backend/README.md`: arquitetura, rotas e integração futura com LangChain.
+- `frontend/README.md`: interface, proxy e configuração.
+- `docs/MAPEAMENTO-LAIS.md`: referência de produto e adaptações.
+- `docs/VALIDACAO.md`: histórico de verificações.
+- `docs/BRIEFING-CODEX.md`: direcionamento para evoluir o RAG.
 
-O histórico Git local inclui a versão inicial e as correções responsivas. Não foi feito push ou alteração de issues no GitHub.
-
-## Interface responsiva
-
-A barra lateral tem rolagem independente no computador. Até 800 px, a navegação é aberta pelo botão Menu e fecha ao selecionar uma área ou pressionar Escape. Em telas de até 600 px, títulos e ações são empilhados, indicadores ficam em linhas e os documentos são apresentados em cartões. Os formulários usam fonte de 16 px no celular, controles de pelo menos 44 px nas ações principais e quebra de textos longos.
-
-Validação em navegador: cinco telas em seis larguras (320, 390, 768, 1024, 1366 e 1920 px), sem transbordamento horizontal. Essas medidas simulam a largura do dispositivo; não substituem testes em aparelhos físicos.
+O histórico Git é local. Não foi realizado push ou alteração do board.

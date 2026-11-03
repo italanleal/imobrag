@@ -266,3 +266,5 @@ dialog::backdrop { background: #183a3266; backdrop-filter: blur(3px); }
   .panel { padding: 16px; }
   .chat-panel { padding: 0; }
 }
+
+.msg.error { padding: 16px; border: 1px solid #efd7bc; background: #fff7ed; border-radius: 8px; color: #78582a; }

@@ -20,10 +20,10 @@ O foco é locação, manutenção, vistorias e desocupação. Validar o conjunto
 
 ## Implementação por etapas
 
-1. Ler o backlog atual e verificar decisões técnicas já tomadas. Definir uma stack pequena para execução local e documentar a escolha; não presumir um framework inexistente.
+1. Ler o backlog atual e verificar decisões técnicas já tomadas. A stack atual é Fastify + TypeScript, SQLite e frontend HTML/CSS/JS. Preservar a organização modular Controller → Service → Repository. React + Vite continua sendo uma evolução futura da interface.
 2. Receber PDFs aprovados para demonstração, extrair texto preservando documento e página e inspecionar a qualidade. Tratar PDF sem texto como caso explícito, sem marcar processamento como concluído.
 3. Criar chunks com identificadores estáveis, metadados e versões; gerar embeddings e persistir o índice conforme decisão técnica da equipe.
-4. Implementar recuperação semântica com evidências rastreáveis. Substituir a busca de palavras-chave e o bloqueio de termos do protótipo; eles não são o motor do produto final.
+4. Implementar recuperação semântica com evidências rastreáveis. Substituir o DemoAnswerEngine em backend/src/infrastructure/ai, implementando o contrato AnswerEngine de modules/chat. A busca de palavras-chave e os bloqueios demonstrativos não são o motor do produto final.
 5. Integrar geração condicionada ao contexto recuperado. Citações devem apontar exclusivamente para trechos efetivamente usados. Não inventar documentos, páginas, prazos, multas ou responsabilidades.
 6. Conectar a interface a endpoints documentados. Expor estados de carregamento, erro, base vazia, processamento e ausência de evidência. Evitar mensagens de sucesso antes da confirmação do backend.
 7. Preparar 15–20 perguntas com e sem cobertura, ambiguidades, documentos conflitantes e tentativas de instrução dentro dos documentos. Avaliar a fundamentação e a correção da fonte, além da recuperação.

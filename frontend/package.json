@@ -1,0 +1,11 @@
+{
+  "name": "@imobrag/frontend",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file-if-exists=.env server.mjs",
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "check": "node --check app.js && node --check api.js && node --check server.mjs"
+  }
+}

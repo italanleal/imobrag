@@ -1,7 +1,16 @@
 {
-  "name": "imobrag-prototipo",
-  "version": "0.1.0",
+  "name": "imobrag",
+  "version": "0.2.0",
   "private": true,
-  "description": "Protótipo navegável do ImobRAG, inspirado em padrões observados na LAIS",
-  "scripts": {"start": "node server.mjs", "check": "node --check app.js"}
+  "description": "ImobRAG — frontend e API Fastify para consulta documental",
+  "workspaces": ["backend", "frontend"],
+  "engines": {"node": ">=24.15.0"},
+  "scripts": {
+    "dev": "concurrently --kill-others -n api,web \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "start": "concurrently --kill-others -n api,web \"npm start -w backend\" \"npm start -w frontend\"",
+    "build": "npm run build -w backend",
+    "check": "npm run check -w backend && npm run check -w frontend",
+    "test": "npm test -w backend"
+  },
+  "devDependencies": {"concurrently": "10.0.6"}
 }

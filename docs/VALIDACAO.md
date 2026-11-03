@@ -27,3 +27,17 @@ Nenhum documento real foi importado. Não houve teste de integração, pois não
 - Reexecução dos oito casos funcionais: 8 de 8 passaram.
 - Melhorias: grades com minmax(0, 1fr), barra lateral rolável, margens compartilhadas, botões e formulários maiores, tabelas convertidas em cartões no celular, quebra de texto e modal limitado à altura disponível.
 - Não houve teste em dispositivo físico nem simulação de teclado virtual. Os textos importados e testes completos de leitores de tela continuam pendentes.
+
+## Backend Fastify e arquitetura modular — 03/11/2026
+
+- Organização por funcionalidade: documents, settings, chat e evaluation.
+- Separação Controller → Service → Repository, com models e schemas próprios por módulo.
+- Banco, migrações, seed, erros HTTP e adaptador de IA separados em infraestrutura.
+- Nove testes de integração passaram após a reorganização: contratos, limites de entrada, documentos, consultas com e sem fonte, persistência, erros e motor substituível.
+- TypeScript e verificação sintática do frontend passaram; build do backend compilou.
+- Auditoria npm não apontou vulnerabilidades nas dependências instaladas.
+- Consulta com fonte executada pelo frontend por chamada à API. Oito casos da avaliação retornaram sucesso na interface conectada.
+- Nome da assistente salvo pela interface e persistido após recarregar via API. O nome padrão foi restaurado.
+- Documentação interativa executou POST /api/chat e exibiu HTTP 200 com fonte.
+- A requisição de avaliação sem corpo foi corrigida para não enviar Content-Type JSON vazio e foi repetida com sucesso.
+- Frontend preservado sem migração para React. LangChain, PDFs e embeddings ainda não implementados.
